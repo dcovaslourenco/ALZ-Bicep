@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "parLocation": {
+      "value": "uksouth"
+    },
+    "parVmName": {
+      "value": "vmampdcp01"
+    },
+    "parVmSku": {
+      "value": "Standard_D2as_v5"
+    },
+    "parVmLocalAdm": {
+      "value": "localadm"
+    },
+    "parVmPass": {
+      "value": ""
+    },
+    "parWindowsVmImage": {
+      "value": {
+        "publisher": "MicrosoftWindowsServer",
+        "offer": "WindowsServer",
+        "sku": "2019-datacenter-gensecond",
+        "version": "latest"
+      }
+    },
+    "parVmStorageType": {
+      "value": "Premium_LRS"
+    },
+    "parVmSubnetId": {
+      "value": "/subscriptions/721f27cd-7b32-4ae2-ab75-e9b5c5935730/resourceGroups/rg-amp-mgmt-prod-01/providers/Microsoft.Network/virtualNetworks/vnet-amp-mgmt-prod-uks-01/subnets/Subnet01"
+    },
+    "parVmDiagsStorageAccount": {
+      "value": "https://stampmgmtdiagsuksd01.blob.core.windows.net/"
+    }
+  }
+}

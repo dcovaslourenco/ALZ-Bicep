@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "parLocation": {
+      "value": "uksouth"
+    },
+    "parLngName": {
+      "value": "lng-amp-crawley-prod-01"
+    },
+    "parLngPip": {
+      "value": "195.224.0.162"
+    },
+    "parLngAddressRanges": {
+      "value": [
+        "192.168.24.0/24",
+        "192.168.25.0/24",
+        "192.168.26.0/24",
+        "192.168.27.0/24",
+        "192.168.28.0/24",
+        "192.168.34.0/24",
+        "10.212.135.0/24"
+      ]
+    },
+    "parConnName": {
+      "value": "conn-amp-crawley-prod-01"
+    },
+    "parVpnGwResourceId": {
+      "value": "/subscriptions/1d109d7a-9e13-4522-889b-00241837c8ad/resourceGroups/rg-amp-hub-prod-01/providers/Microsoft.Network/virtualNetworkGateways/vpngw-amp-hub-prod-uks-01"
+    },
+    "parConnSharedKey": {
+      "value": "placeholder"
+    }
+  }
+}

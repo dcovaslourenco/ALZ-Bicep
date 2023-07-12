@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "Application": {
+      "value": "bkp"
+    },
+    "Environment": {
+      "value": "prod"
+    },
+    "FullRegion": {
+      "value": "uksouth"
+    },
+    "DeployVmBackupVault": {
+      "value": "Yes"
+    },
+    "AlternateVaultName": {
+      "value": "rsv-amp-mgmt-bkp-prod-01"
+    },
+    "VaultIndex": {
+      "value": 1
+    },
+    "DeployBackupPolicy": {
+      "value": "No"
+    },
+    "PolicyName": {
+      "value": "DomainControllersPolicy"
+    },
+    "ScheduleRunDays": {
+      "value": ["Sunday"]
+    },
+    "ScheduleRunTimes": {
+      "value": ["2023-03-01T00:15Z"]
+    },
+    "ScheduleRunFrequency": {
+      "value": "Daily"
+    },
+    "DailyRetentionDurationCount": {
+      "value": 14
+    },
+    "WeeklyRetentionDurationCount": {
+      "value": 1
+    },
+    "MonthlyRetentionDurationCount": {
+      "value": 1
+    },
+    "DaysOfTheWeekForMonthlyRetention": {
+      "value": ["Sunday"]
+    },
+    "WeeksOfTheMonthForMonthlyRetention": {
+      "value": ["First"]
+    },
+    "RetentionScheduleFormatType": {
+      "value": "Weekly"
+    }
+  }
+}

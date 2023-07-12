@@ -1,0 +1,49 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "parLocation": {
+            "value": "uksouth"
+        },
+        "parDisableBgpRoutePropagation": {
+            "value": false
+        },
+        "parDdosProtectionPlanId": {
+            "value": ""
+        },
+        "parSpokeNetworkAddressPrefix": {
+            "value": "192.168.225.0/24"
+        },
+        "parSpokeNetworkName": {
+            "value": "vnet-amp-mgmt-prod-uks-01"
+        },
+        "parSubnets": {
+          "value": [
+            {
+              "name": "Subnet01",
+              "ipAddressRange": "192.168.225.0/25"
+            }
+          ]
+        },
+        "parNsgName": {
+          "value": "nsg-Subnet01"
+        },
+        "parDnsServerIps": {
+            "value": []
+        },
+        "parNextHopIpAddress": {
+            "value": ""
+        },
+        "parSpokeToHubRouteTableName": {
+            "value": "rt-amp-mgmt-prod-uks-01"
+        },
+        "parTags": {
+            "value": {
+              "Environment": "Production"
+            }
+        },
+        "parTelemetryOptOut": {
+            "value": true
+        }
+    }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "parDestinationVirtualNetworkId": {
+      "value": "/subscriptions/721f27cd-7b32-4ae2-ab75-e9b5c5935730/resourceGroups/rg-amp-mgmt-prod-01/providers/Microsoft.Network/virtualNetworks/vnet-amp-mgmt-prod-uks-01"
+    },
+    "parSourceVirtualNetworkName": {
+      "value": "vnet-amp-hub-prod-uks-01"
+    },
+    "parDestinationVirtualNetworkName": {
+      "value": "vnet-amp-mgmt-prod-uks-01"
+    },
+    "parAllowVirtualNetworkAccess": {
+      "value": true
+    },
+    "parAllowForwardedTraffic": {
+      "value": true
+    },
+    "parAllowGatewayTransit": {
+      "value": true
+    },
+    "parUseRemoteGateways": {
+      "value": false
+    },
+    "parTelemetryOptOut": {
+      "value": true
+    }
+  }
+}

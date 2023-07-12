@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "parLogAnalyticsWorkspaceName": {
+      "value": "law-amp-mgmt-log-prod-uks-01"
+    },
+    "parLogAnalyticsWorkspaceLocation": {
+      "value": "uksouth"
+    },
+    "parLogAnalyticsWorkspaceSkuName": {
+      "value": "PerGB2018"
+    },
+    "parLogAnalyticsWorkspaceLogRetentionInDays": {
+      "value": 365
+    },
+    "parLogAnalyticsWorkspaceSolutions": {
+      "value": [
+        "AgentHealthAssessment",
+        "AntiMalware",
+        "ChangeTracking",
+        "Security",
+        "ServiceMap",
+        "SQLAdvancedThreatProtection",
+        "SQLVulnerabilityAssessment",
+        "SQLAssessment",
+        "Updates",
+        "VMInsights"
+      ]
+    },
+    "parAutomationAccountName": {
+      "value": "aa-amp-mgmt-log-prod-uks-01"
+    },
+    "parAutomationAccountLocation": {
+      "value": "uksouth"
+    },
+    "parAutomationAccountUseManagedIdentity": {
+      "value": true
+    },
+    "parTags": {
+      "value": {
+        "Environment": "Production"
+      }
+    },
+    "parTelemetryOptOut": {
+      "value": true
+    }
+  }
+}

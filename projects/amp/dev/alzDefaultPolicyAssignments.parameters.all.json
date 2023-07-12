@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "parTopLevelManagementGroupPrefix": {
+      "value": "amp"
+    },
+    "parLogAnalyticsWorkSpaceAndAutomationAccountLocation": {
+      "value": "uksouth"
+    },
+    "parLogAnalyticsWorkspaceResourceId": {
+      "value": "/subscriptions/721f27cd-7b32-4ae2-ab75-e9b5c5935730/resourceGroups/rg-amp-mgmt-log-prod-01/providers/Microsoft.OperationalInsights/workspaces/law-amp-mgmt-log-prod-uks-01"
+    },
+    "parLogAnalyticsWorkspaceLogRetentionInDays": {
+      "value": "365"
+    },
+    "parAutomationAccountName": {
+      "value": "aa-amp-mgmt-log-prod-uks-01"
+    },
+    "parMsDefenderForCloudEmailSecurityContact": {
+      "value": "security_contact@replace_me.com"
+    },
+    "parDdosProtectionPlanId": {
+      "value": ""
+    },
+    "parPrivateDnsResourceGroupId": {
+      "value": ""
+    },
+    "parTelemetryOptOut": {
+      "value": true
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "parRoleAssignmentNameGuid": {
+      "value": ""
+    },
+    "parRoleDefinitionId": {
+      "value": "434105ed-43f6-45c7-a02f-909b2ba83430"
+    },
+    "parAssigneePrincipalType": {
+      "value": "Group"
+    },
+    "parAssigneeObjectId": {
+      "value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    },
+    "parTelemetryOptOut": {
+      "value": true
+    }
+  }
+}

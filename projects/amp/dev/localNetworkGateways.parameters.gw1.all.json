@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "parLocation": {
+      "value": "uksouth"
+    },
+    "parLngName": {
+      "value": "lng-amp-hq-prod-01"
+    },
+    "parLngPip": {
+      "value": "16.235.234.56"
+    },
+    "parLngAddressRanges": {
+      "value": [
+        "10.0.0.0/24",
+        "10.0.10.0/24"
+      ]
+    },
+    "parConnName": {
+      "value": "conn-amp-hq-prod-01"
+    },
+    "parVpnGwResourceId": {
+      "value": "/subscriptions/721f27cd-7b32-4ae2-ab75-e9b5c5935730/resourceGroups/rg-amp-hub-prod-01/providers/Microsoft.Network/virtualNetworkGateways/vpngw-amp-hub-prod-uks-01"
+    },
+    "parConnSharedKey": {
+      "value": "abcde12345"
+    }
+  }
+}

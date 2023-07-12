@@ -1,0 +1,178 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.5.0",
+    "parameters": {
+        "Application": {
+            "type": "string"
+        },
+        "Environment": {
+            "type": "string",
+            "allowedValues": [
+                "prod",
+                "shared",
+                "qa",
+                "test",
+                "dev"
+            ]
+        },
+        "FullRegion": {
+            "type": "string"
+        },
+        "DeployVmBackupVault": {
+            "type": "string",
+            "defaultValue": "No",
+            "allowedValues": [
+                "Yes",
+                "No"
+            ]
+        },
+        "AlternateVaultName": {
+            "type": "string",
+            "defaultValue": "No",
+            "metadata": {
+                "description": "Specify a different vault name that doesn't follow naming convention. If not used always leave 'No' as the default vaule."
+            }
+        },
+        "VaultIndex": {
+            "type": "int",
+            "minValue": 1,
+            "maxValue": 999
+        },
+        "DeployBackupPolicy": {
+            "type": "string",
+            "defaultValue": "No",
+            "allowedValues": [
+                "Yes",
+                "No"
+            ]
+        },
+        "PolicyName": {
+            "type": "string"
+        },
+        "ScheduleRunDays": {
+            "type": "array",
+            "allowedValues": [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+            ]
+        },
+        "ScheduleRunTimes": {
+            "type": "array"
+        },
+        "ScheduleRunFrequency": {
+            "type": "string"
+        },
+        "DailyRetentionDurationCount": {
+            "type": "int"
+        },
+        "WeeklyRetentionDurationCount": {
+            "type": "int"
+        },
+        "MonthlyRetentionDurationCount": {
+            "type": "int"
+        },
+        "DaysOfTheWeekForMonthlyRetention": {
+            "type": "array",
+            "allowedValues": [
+                "Sunday",
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+            ]
+        },
+        "WeeksOfTheMonthForMonthlyRetention": {
+            "type": "array"
+        },
+        "RetentionScheduleFormatType": {
+            "type": "string"
+        }
+    },
+    "variables": {
+        "rsvApiVersion": "2016-06-01",
+        "location": "[parameters('FullRegion')]",
+        "paddedVaultIndex": "[padLeft(parameters('VaultIndex'), 2, '0')]",
+        "vaultName": "[if(equals(parameters('AlternateVaultName'), 'No'), concat('rsv-', parameters('Application'), '-', parameters('Environment'), '-', variables('paddedVaultIndex')), parameters('AlternateVaultName'))]"
+    },
+    "resources": [
+        {
+            "comments": "Doherty Associates v2.0; Recovery Services Vault for VM and file share backups.",
+            "condition": "[equals(parameters('DeployVmBackupVault'), 'Yes')]",
+            "apiVersion": "[variables('rsvApiVersion')]",
+            "type": "Microsoft.RecoveryServices/vaults",
+            "name": "[variables('vaultName')]",
+            "location": "[variables('location')]",
+            "sku": {
+                "name": "RS0",
+                "tier": "Standard"
+            },
+            "properties": {},
+            "dependsOn": []
+        },
+        {
+            "comments": "Doherty Associates v1.0; VM Backup Policy.",
+            "apiVersion": "[variables('rsvApiVersion')]",
+            "condition": "[equals(parameters('DeployBackupPolicy'), 'Yes')]",
+            "name": "[concat(variables('vaultName'),'/', parameters('policyName'))]",
+            "type": "Microsoft.RecoveryServices/vaults/backupPolicies",
+            "location": "[variables('location')]",
+            "properties": {
+                "backupManagementType": "AzureIaasVM",
+                "schedulePolicy": {
+                    "scheduleRunFrequency": "[parameters('ScheduleRunFrequency')]",
+                    "scheduleRunDays": "[parameters('ScheduleRunDays')]",
+                    "scheduleRunTimes": "[parameters('ScheduleRunTimes')]",
+                    "schedulePolicyType": "SimpleSchedulePolicy"
+                },
+                "retentionPolicy": {
+                    "dailySchedule": {
+                        "retentionTimes": "[parameters('ScheduleRunTimes')]",
+                        "retentionDuration": {
+                            "count": "[parameters('DailyRetentionDurationCount')]",
+                            "durationType": "Days"
+                        }
+                    },
+                    "weeklySchedule": {
+                        "daysOfTheWeek": "[parameters('ScheduleRunDays')]",
+                        "retentionTimes": "[parameters('ScheduleRunTimes')]",
+                        "retentionDuration": {
+                            "count": "[parameters('WeeklyRetentionDurationCount')]",
+                            "durationType": "Weeks"
+                        }
+                    },
+                    "monthlySchedule": {
+                        "retentionScheduleFormatType": "[parameters('RetentionScheduleFormatType')]",
+                        "retentionScheduleDaily": {
+                            "daysOfTheMonth": [
+                                {
+                                    "date": 1,
+                                    "isLast": false
+                                }
+                            ]
+                        },
+                        "retentionScheduleWeekly": {
+                            "daysOfTheWeek": "[parameters('DaysOfTheWeekForMonthlyRetention')]",
+                            "weeksOfTheMonth": "[parameters('WeeksOfTheMonthForMonthlyRetention')]"
+                        },
+                        "retentionTimes": "[parameters('ScheduleRunTimes')]",
+                        "retentionDuration": {
+                            "count": "[parameters('MonthlyRetentionDurationCount')]",
+                            "durationType": "Months"
+                        }
+                    },
+                    "retentionPolicyType": "LongTermRetentionPolicy"
+                }
+            },
+            "dependsOn": [
+                "[resourceid('Microsoft.RecoveryServices/vaults/', variables('vaultName'))]"
+            ]
+        }
+    ]
+}
